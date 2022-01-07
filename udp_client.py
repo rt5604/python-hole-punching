@@ -2,14 +2,16 @@ import logging
 import socket
 import sys
 from util import *
+import sysutil
 
 logger = logging.getLogger()
 
-
-def main(host='127.0.0.1', port=9999, msg='A'):
+def main(host='127.0.0.1', port=9999):
     sock = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
-    data = msg.encode('utf-8')
+
+    systemId = sysutil.getSystemSerial()
+    data = systemId.encode('utf-8')
     print('data = {}'.format(data))
     sock.sendto(data, (host, port))
 

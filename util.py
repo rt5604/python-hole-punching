@@ -10,7 +10,6 @@ def addr_from_args(args, host='127.0.0.1', port=9999):
         host, port = host, port
     return host, port
 
-
 def msg_to_addr(data):
     ip, port = data.decode('utf-8').strip().split(':')
     return (ip, int(port))
