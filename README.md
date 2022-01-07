@@ -12,7 +12,7 @@ python udp_server.py 10.9.156.2 9999
 
 * Client side
 ```
-python udp_client.py 10.9.156.2 9999
+python udp_client.py 139.150.75.129 9999
 ```
 
 # Reference paper

@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import uuid
 
 def is_window():
     if sys.platform == 'win32':
@@ -55,10 +56,7 @@ def getSystemSerial():
         return sProcIdStr
 
     else:   # Assume that the other system is linux
-        try:
-            with open('/etc/machine-id', 'r') as m:
-                lines = m.readlines()
-            return lines[0]
-        except Exception:
-            return 'ERROR000000001'
+        uid = uuid.getnode()
+        mac = ''.join(("%012X" % uid)[i:i+2] for i in range(0, 12, 2))
+        return mac
 
