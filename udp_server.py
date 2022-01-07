@@ -13,7 +13,7 @@ def main(host='0.0.0.0', port=9999):
     sock.bind((host, port))
     while True:
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-        logger.info("connection from: %s", addr)
+        logger.info("connection from:".format(addr, data))
         addresses.append(addr)
         if len(addresses) >= 2:
             logger.info("server - send client info to: %s", addresses[0])
