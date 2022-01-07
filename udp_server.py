@@ -6,13 +6,15 @@ from util import *
 logger = logging.getLogger()
 addresses = []
 
+
 def main(host='0.0.0.0', port=9999):
     sock = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
     sock.bind((host, port))
     while True:
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-        print("connection from:".format(addr, data))
+        dataDec = data.decode()
+        logger.info("connection from: %s %s", addr, dataDec)
         addresses.append(addr)
         if len(addresses) >= 2:
             logger.info("server - send client info to: %s", addresses[0])
