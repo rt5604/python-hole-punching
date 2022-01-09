@@ -6,7 +6,6 @@ import sysutil
 
 logger = logging.getLogger()
 
-
 def main(host='127.0.0.1', port=9999):
     sock = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
@@ -23,11 +22,10 @@ def main(host='127.0.0.1', port=9999):
         print('client received: {} {}'.format(addr, data))
         addr = msg_to_addr(data)
 
-        countStr = str(count)
-        count += 1
-        countEnc = countStr.encode()
-        print('client: send {} to {}'.format(countStr, addr))
-        sock.sendto(countEnc, addr)
+        ipAddr = sysutil.get_ip()
+        ipAddrEnc = ipAddr.encode()
+        print('client: send {} to {}'.format(ipAddr, addr))
+        sock.sendto(ipAddrEnc, addr)
         data, addr = sock.recvfrom(1024)
         print('client received: {} {}'.format(addr, data))
 

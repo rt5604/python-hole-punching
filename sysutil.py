@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import uuid
+import socket
 
 def is_window():
     if sys.platform == 'win32':
@@ -60,3 +61,17 @@ def getSystemSerial():
         mac = ''.join(("%012X" % uid)[i:i+2] for i in range(0, 12, 2))
         return mac
 
+##############################################################################
+#  get_ip
+##############################################################################
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.connect(("8.8.8.8", 80))
+        IP = s.getsockname()[0]
+
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
