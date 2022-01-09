@@ -7,6 +7,10 @@ import sysutil
 logger = logging.getLogger()
 
 def main(host='127.0.0.1', port=9999):
+
+    ipAddr = sysutil.get_ip()
+    print('my ipAddr = {}'.format(ipAddr))
+
     sock = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
 
